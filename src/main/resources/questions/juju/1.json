@@ -1,0 +1,33 @@
+{
+  "title": "Animal quiz",
+  "description": "This is a quiz about animals",
+  "questions": [
+    {
+      "question": "Which animal is active at night?",
+      "answer": "bat",
+      "otherOptions": [
+        "cat",
+        "deer",
+        "monkey"
+      ]
+    },
+    {
+      "question": "What is the largest mammal in the world?",
+      "answer": "blue whale",
+      "otherOptions": [
+        "hippopotamus",
+        "giraffe",
+        "elephant"
+      ]
+    },
+    {
+      "question": "Which bird is a universal symbol of peace?",
+      "answer": "dove",
+      "otherOptions": [
+        "hummingbird",
+        "pigeon",
+        "crow"
+      ]
+    }
+  ]
+}

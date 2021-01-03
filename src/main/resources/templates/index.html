@@ -1,0 +1,142 @@
+
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <title>QuizMaster</title>
+    <th:block th:include="fragments/common.html :: headerfiles"></th:block>
+
+    <style>
+
+    body {
+        background-color: rgb(28, 169, 237);
+        color: white;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    .card {
+        color: #aaa;
+    }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+</head>
+<body class="d-flex h-100 text-center">
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="mb-5">
+        <div>
+            <h3 class="float-md-start mb-0 display-3">QuizMaster</h3>
+        </div>
+    </div>
+    <div class="container">
+        <main class="px-3">
+            <div id="enter-code-div">
+                <h3>Please enter the 4-digit code</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="codeInput" placeholder="ABCD">
+                </div>
+                <p class="lead">
+                    <a href="#" style="cursor: pointer" onclick="" class="btn btn-lg btn-primary fw-bold" id="submit-btn">Submit</a>
+                </p>
+
+                <p class="lead">
+                    <a href="/host" class="btn btn-sm btn-outline-light mt-5" id="host-game-btn">Host a game</a>
+                </p>
+            </div>
+            <div style="display: none" id="enter-username-div">
+                <h2>What's your name?</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="usernameInput">
+                </div>
+                <p class="lead">
+                    <a href="#" class="btn btn-lg btn-primary fw-bold" id="join-game-btn">Join game</a>
+                </p>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+    <div class="mt-auto text-white-50">
+        <div class="footer fixed-bottom" th:insert="fragments/common.html :: footer"></div>
+    </div>
+</div>
+
+
+
+</body>
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const codeFromUrl = urlParams.get('code');
+
+$(document).ready(function(){
+
+    $("#submit-btn").click(function(){
+
+        let code = $("#codeInput").val();
+        $.post( "/verify", { code: code })
+          .done(function( data ) {
+            jsonData = JSON.parse(data);
+            if (jsonData.status === "success") {
+                $("#enter-code-div").hide();
+                $("#enter-username-div").show();
+            } else {
+                alert(code + ": invalid code. Please check and try again.");
+            }
+          });
+    });
+
+    $("#join-game-btn").click(function(){
+
+        let jsonData = {
+            username: $("#usernameInput").val(), code: $("#codeInput").val()
+        }
+        post_to_url('/room', jsonData);
+    });
+
+    if (codeFromUrl) {
+        $('#codeInput').val(codeFromUrl);
+        $('#submit-btn').trigger("click");
+    }
+});
+
+function post_to_url(path, params, method) {
+    method = method || "post";
+
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+</script>
+</html>

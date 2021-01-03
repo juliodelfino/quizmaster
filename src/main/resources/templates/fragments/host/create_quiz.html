@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="create_quiz">
+    <form>
+        <div class="panel-header bg-primary-gradient">
+            <div class="page-inner py-5">
+                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                    <div>
+                        <h2 class="text-white pb-2 fw-bold">Create a new quiz</h2>
+                        <h5 class="text-white op-7 mb-2">Premium Bootstrap 4 Admin Dashboard</h5>
+                    </div>
+                    <div class="ml-md-auto py-2 py-md-0">
+                        <a href="/dashboard" class="btn btn-white btn-border btn-round mr-2" id="create-quiz-btn">View
+                            all quizzes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-inner mt--5">
+            <div class="card full-height">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="titleInput">Title</label>
+                        <input type="text" class="form-control" id="titleInput" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionInput">Description</label>
+                        <input type="text" class="form-control" id="descriptionInput" placeholder="Description">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group w-100">
+                <p class="label">Questions</p>
+                <div class="row mt--2">
+                    <div class="col-md-6">
+                        <div class="card full-height">
+                            <div class="card-body">
+                                <div class="card-title">What is the answer to this question 1?</div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                           value="option1" checked disabled>
+                                    <span>Default radio</span>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                                           value="option2" disabled>
+                                    <span>Second default radio</span>
+                                </div>
+                                <div class="form-check disabled">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
+                                           value="option3" disabled>
+                                    <span>Disabled radio</span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-sm btn-outline-dark" id="edit-question-btn" onclick="editDia">Edit</a>
+                                <a href="#" class="btn btn-sm btn-outline-dark">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card full-height">
+                            <button type="button" class="card-body btn btn-outline-dark" data-toggle="modal"
+                                    id="add-question-btn"> Add a question
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="button" class="btn btn-lg btn-block btn-primary" id="save" value="Save"/>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="modal fade" id="question-modal" tabindex="-1" role="dialog"
+         aria-labelledby="questionModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create a new question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="questionInput1">Question</label>
+                        <input type="text" class="form-control" id="questionInput1" placeholder="Question">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionInput">Answers</label>
+                        <div class="form-check col-xs-6">
+                            <input class="form-check-input" style="display: inline" name="question1Options" type="radio"
+                                   value="" id="defaultCheck1" checked>
+                            <input type="text" class="form-control" style="display: inline" id="answer1"
+                                   placeholder="Answer 1">
+                        </div>
+                        <div class="form-check col-xs-6">
+                            <input class="form-check-input" style="display: inline" name="question1Options" type="radio"
+                                   value="" id="defaultCheck2">
+                            <input type="text" class="form-control" style="display: inline" id="answer2"
+                                   placeholder="Answer 2">
+                        </div>
+                        <div class="form-check col-xs-6">
+                            <input class="form-check-input" style="display: inline" name="question1Options" type="radio"
+                                   value="" id="defaultCheck3">
+                            <input type="text" class="form-control" style="display: inline" id="answer3"
+                                   placeholder="Answer 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+
+            $("#add-question-btn").click(function(){
+                $('#question-modal').modal('show');
+            });
+
+            $("#edit-question-btn").click(function(){
+                $('#question-modal').modal('show');
+            });
+        });
+    </script>
+</div>

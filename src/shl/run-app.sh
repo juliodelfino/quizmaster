@@ -1,0 +1,1 @@
+java -cp config/:bin/* org.springframework.boot.loader.JarLauncher 2>&1

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="quizzes">
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Quizzes</h2>
+                    <h5 class="text-white op-7 mb-2">Manage your quizzes</h5>
+                </div>
+                <div class="ml-md-auto py-2 py-md-0">
+                    <a href="/create_quiz" class="btn btn-white btn-border btn-round mr-2" id="create-quiz-btn">Create a
+                        quiz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="row mt--2">
+            <div class="col-md-6">
+                <div class="card full-height">
+                    <div class="card-body">
+                        <div class="card-title">Animal quiz</div>
+                        <div class="card-category">Animals</div>
+                        <div class="card-category">5 questions</div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/edit_quiz?id=1" class="btn btn-sm btn-outline-dark">Edit</a>
+                        <a href="/host_quiz?id=1" class="btn btn-sm btn-outline-dark">Start Hosting</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card full-height">
+                    <div class="card-body">
+                        <div class="card-title">Trial questions</div>
+                        <div class="card-category">General knowledge</div>
+                        <div class="card-category">5 questions</div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/edit_quiz?id=trial_questions" class="btn btn-sm btn-outline-dark">Edit</a>
+                        <a href="/host_quiz?id=trial_questions" class="btn btn-sm btn-outline-dark">Start Hosting</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card full-height">
+                    <div class="card-body">
+                        <div class="card-title">Main game</div>
+                        <div class="card-category">Family</div>
+                        <div class="card-category">10 questions</div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/edit_quiz?id=main_game" class="btn btn-sm btn-outline-dark">Edit</a>
+                        <a href="/host_quiz?id=main_game" class="btn btn-sm btn-outline-dark">Start Hosting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

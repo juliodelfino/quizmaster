@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>Quiz by JDelfino!</title>
+    <th:block th:include="fragments/common.html :: headerfiles"></th:block>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+
+</head>
+
+<style>
+    html,body{
+        height: 100%;
+    }
+
+    body {
+        background-color: rgb(28, 169, 237);
+        color: white;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    #counter-info {
+        color: rgb(123, 211, 245);
+    }
+
+    #choices {
+        font-size: 18pt
+    }
+
+    #choices label {
+        margin-bottom: 0;
+        color: rgb(123, 211, 245);
+    }
+
+    input[type="radio"]:checked+span {
+        margin-bottom: 0;
+        font-weight: bold;
+        color: white;
+    }
+
+    .footer {
+      width: 100%;
+      height: 80px;
+      background-color: rgb(123, 211, 245);
+    }
+
+
+</style>
+<body class="d-flex h-100 text-center">
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <main class="mb-3">
+        <div>
+            <h3 class="float-md-start mb-0 display-3">QuizMaster</h3>
+        </div>
+    </main>
+    <div class="container">
+        <h3 id="question-info">
+            <span id="question">Host a quiz!</span>
+        </h3>
+        <div>
+            <div class="form-group">
+                <label for="usernameInput">Enter your username</label>
+                <input type="text" class="form-control" id="usernameInput" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <label for="usernameInput">Enter your password</label>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password" />
+            </div>
+            <input type="button" class="btn btn-lg btn-block btn-outline-light" id="submit" value="Login" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="footer fixed-bottom" th:insert="fragments/common.html :: footer"></div>
+</body>
+<script>
+
+$(function(){
+
+    $("#submit").click(function(){
+
+        let username = $("#usernameInput").val();
+        let password = $("#passwordInput").val();
+        $.post( "/host/login", { username: username, password: password })
+          .done(function( data ) {
+            jsonData = JSON.parse(data);
+            if (jsonData.status === "success") {
+                location.href = "/dashboard";
+            } else {
+                alert("login failed");
+            }
+          });
+    });
+
+});
+
+</script>
+</html>
